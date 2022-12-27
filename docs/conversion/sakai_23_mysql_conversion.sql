@@ -23,3 +23,12 @@ ALTER TABLE rbc_rating ADD order_index INT DEFAULT NULL;
 UPDATE rbc_rating r, rbc_criterion_ratings cr SET r.criterion_id = cr.rbc_criterion_id, r.order_index = cr.order_index WHERE cr.ratings_id = r.id;
 UPDATE rbc_criterion c, rbc_rubric_criterions rc SET c.rubric_id = rc.rbc_rubric_id, c.order_index = rc.order_index WHERE rc.criterions_id = c.id;
 -- END SAK-46178
+
+-- SAK-48188
+RENAME TABLE BULLHORN_ALERT TO USER_NOTIFICATION;
+DROP INDEX IDX_BULLHORN_ALERTS_TO_USER;
+CREATE INDEX IDX_USER_NOTIFICATIONS_TO_USER ON USER_NOTIFICATION(TO_USER);
+
+DROP INDEX IDX_BULLHORN_ALERTS_EVENT_REF;
+CREATE INDEX IDX_USER_NOTIFICATIONS_EVENT_REF ON USER_NOTIFICATION(EVENT, REF);
+-- END SAK-48188
