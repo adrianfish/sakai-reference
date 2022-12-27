@@ -27,3 +27,7 @@ ALTER TABLE rbc_rating ADD order_index NUMBER(1,0) NULL;
 UPDATE rbc_rating r, rbc_criterion_ratings cr SET r.criterion_id = cr.rbc_criterion_id, r.order_index = cr.order_index WHERE cr.ratings_id = r.id;
 UPDATE rbc_criterion c, rbc_rubric_criterions rc SET c.rubric_id = rc.rbc_rubric_id, c.order_index = rc.order_index WHERE rc.criterions_id = c.id;
 -- END SAK-46178
+
+-- SAK-48245
+ALTER TABLE USER_NOTIFICATIONS ADD VIEWED NUMBER(1,0) DEFAULT NULL;
+-- END SAK-48245
